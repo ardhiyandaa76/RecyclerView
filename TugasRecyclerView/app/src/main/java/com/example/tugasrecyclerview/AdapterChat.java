@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> {
-
+    // 4- click handler events
+    public  ItemClickListener clickListener;
     //1--Data Source
     private ChatModel[] listData;
 
@@ -18,12 +19,16 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
         this.listData = listData;
     }
 
-
+    public void setClickListener(ItemClickListener clickListener){
+        this.clickListener = clickListener;
+    }
 
     //2--View Holder Class
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView imageProfile;
         public TextView descProfile, profileName, timeProfile;
+
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -31,7 +36,15 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
             this.descProfile = itemView.findViewById(R.id.descProfile);
             this.profileName = itemView.findViewById(R.id.profileName);
             this.timeProfile = itemView.findViewById(R.id.timeProfile);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(clickListener != null){
+                clickListener.onClick(view, getAdapterPosition());
+            }
         }
     }
 

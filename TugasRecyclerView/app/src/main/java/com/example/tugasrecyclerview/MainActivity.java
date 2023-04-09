@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickListener {
 
  // 1- AdapterView : RecyclerView
     RecyclerView recyclerView;
@@ -35,5 +37,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //To Get Data
         recyclerView.setAdapter(adapter);
+
+       //Handling the click events
+        adapter.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view, int pos) {
+        Toast.makeText(this, "Pencet Opo " + myListData[pos].getName(), Toast.LENGTH_SHORT).show();
     }
 }
