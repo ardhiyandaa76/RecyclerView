@@ -26,7 +26,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
     //2--View Holder Class
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView imageProfile;
-        public TextView descProfile, profileName, timeProfile;
+        public TextView descProfile, profileName, timeProfile, dateProfile, statusProfile, phoneNumber;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -36,6 +36,9 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
             this.descProfile = itemView.findViewById(R.id.descProfile);
             this.profileName = itemView.findViewById(R.id.profileName);
             this.timeProfile = itemView.findViewById(R.id.timeProfile);
+            this.dateProfile = itemView.findViewById(R.id.dateProfile);
+            this.statusProfile = itemView.findViewById(R.id.statusProfile);
+            this.phoneNumber = itemView.findViewById(R.id.phoneNumber);
             itemView.setOnClickListener(this);
 
         }
@@ -60,6 +63,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyViewHolder> 
     }
 
     @Override
+
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final ChatModel myListData = listData[position];
         holder.imageProfile.setImageResource(listData[position].getImage());
