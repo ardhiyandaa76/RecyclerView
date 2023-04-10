@@ -2,6 +2,7 @@ package com.example.tugasrecyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,14 +31,22 @@ public class ChatDetail extends AppCompatActivity {
             profileName.setText(bundle.getString("name"));
         }
 
+
         chatProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String status = getIntent().getExtras().getString("status");
-                Toast.makeText(ChatDetail.this, "Test Aje " + status, Toast.LENGTH_SHORT).show();
+                String phoneNumber = getIntent().getExtras().getString("phoneNumber");
+                String date = getIntent().getExtras().getString("date");
+                Toast.makeText(ChatDetail.this, "Test Aje " + status + phoneNumber + date, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ChatDetail.this, Profile.class);
+                intent.putExtra("image", bundle.getInt("image"));
+                intent.putExtra("name", bundle.getString("name"));
+                intent.putExtra("status", status);
+                intent.putExtra("phoneNumber", phoneNumber);
+                intent.putExtra("date", date);
+                startActivity(intent);
             }
         });
-
     }
-
 }
